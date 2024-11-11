@@ -1,5 +1,5 @@
 from schemas import STransactionAdd, STransaction, STransactionId
-from repository import TransactionRepository
+from backend.repository import TransactionRepository
 from typing import Annotated
 from fastapi import Depends, APIRouter
 

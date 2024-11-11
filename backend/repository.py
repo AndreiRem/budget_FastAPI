@@ -1,4 +1,4 @@
-from database import new_session, TransactionORM
+from backend.database import new_session, TransactionORM
 from schemas import STransactionAdd, STransaction
 from sqlalchemy import select
 

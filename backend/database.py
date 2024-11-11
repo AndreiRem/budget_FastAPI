@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
@@ -10,7 +12,8 @@ new_session = async_sessionmaker(engine, expire_on_commit=False)
 
 
 class Model(DeclarativeBase):
-    pass
+    created_at: datetime = datetime.now()
+    updated_at: datetime = datetime.now()
 
 
 class TransactionORM(Model):
@@ -19,6 +22,12 @@ class TransactionORM(Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     amount: Mapped[float]
     description: Mapped[str | None]
+
+
+class AccountORM(Model):
+    __tablename__ = 'account'
+    id: Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str]
 
 
 async def create_tables():
