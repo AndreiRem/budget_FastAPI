@@ -24,6 +24,6 @@ class UserResponse(UserBase):
         from_attributes = True
 
 
-class LoginResponse(BaseModel):
+class Token(BaseModel):
     access_token: str
     token_type: str
