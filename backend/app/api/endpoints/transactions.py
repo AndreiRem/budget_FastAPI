@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.services.transactions import TransactionService
 from app.schemas.transactions import TransactionBase, TransactionUpdate, TransactionResponse
 from app.services.transactions import get_transaction_service
-from app.schemas.users import UserResponse
-from app.services.users import get_current_user
+from app.schemas.users import UserId
+from app.services.users import get_current_user_id
 
 
 router = APIRouter(
@@ -15,17 +15,18 @@ router = APIRouter(
 @router.post("/", response_model=TransactionResponse)
 async def create_transaction(
     transaction: TransactionBase,
-    current_user: UserResponse = Depends(get_current_user),
+    current_user_id: UserId = Depends(get_current_user_id),
     service: TransactionService = Depends(get_transaction_service),
 ):
-    return await service.create_transaction(transaction, current_user)
+    return await service.create_transaction(transaction, current_user_id)
 
 
 @router.get("/", response_model=list[TransactionResponse])
 async def get_all_transactions(
-    service: TransactionService = Depends(get_transaction_service),
+        current_user_id: UserId = Depends(get_current_user_id),
+        service: TransactionService = Depends(get_transaction_service),
 ):
-    return await service.get_all_transactions()
+    return await service.get_all_transactions(current_user_id)
 
 
 @router.get("/{transaction_id}", response_model=TransactionResponse)

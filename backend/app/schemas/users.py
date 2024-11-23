@@ -24,6 +24,10 @@ class UserResponse(UserBase):
         from_attributes = True
 
 
+class UserId(BaseModel):
+    id: int
+
+
 class Token(BaseModel):
     access_token: str
     token_type: str
