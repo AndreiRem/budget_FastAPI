@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
-from jose import JWTError, jwt
+from jwt.exceptions import InvalidTokenError
+import jwt
 
 SECRET_KEY = "my-secret-key"
 ALGORITHM = "HS256"
@@ -18,5 +19,5 @@ def decode_access_token(token: str) -> dict | None:
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload
-    except JWTError:
+    except InvalidTokenError:
         return None
