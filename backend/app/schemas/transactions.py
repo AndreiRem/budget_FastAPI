@@ -12,14 +12,14 @@ class TransactionBase(BaseModel):
 
 
 class TransactionCreate(TransactionBase):
+    user_id: int
+
+
+class TransactionUpdate(TransactionCreate):
     pass
 
 
-class TransactionUpdate(TransactionBase):
-    pass
-
-
-class TransactionResponse(TransactionBase):
+class TransactionResponse(TransactionCreate):
     id: int
 
     class Config:

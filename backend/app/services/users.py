@@ -4,6 +4,10 @@ from app.core.security import verify_password
 from app.db.repositories.users import UserRepository
 from app.core.jwt import decode_access_token
 from jwt.exceptions import InvalidTokenError
+from app.services.base import get_service_factory
+from fastapi import Depends, HTTPException, status
+from app.schemas.users import UserResponse
+from app.core.security import oauth2_scheme
 
 
 class UserService:
@@ -34,3 +38,25 @@ class UserService:
             return user
         except InvalidTokenError:
             raise ValueError("Invalid token")
+
+
+get_user_service = get_service_factory(UserRepository, UserService)
+
+
+async def get_current_user(
+    token: str = Depends(oauth2_scheme),
+    user_service: UserService = Depends(get_user_service)
+) -> UserResponse:
+    try:
+        user = await user_service.get_user_from_token(token)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Unauthorized"
+            )
+        return user
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail=str(e)
+        )
