@@ -1,12 +1,12 @@
 from app.db.models import UserORM
-from app.schemas.users import UserCreate, UserResponse
+from app.schemas.user import UserCreate, UserResponse
 from app.core.security import verify_password
-from app.db.repositories.users import UserRepository
+from app.db.repositories.user import UserRepository
 from app.core.jwt import decode_access_token
 from jwt.exceptions import InvalidTokenError
 from app.services.base import get_service_factory
 from fastapi import Depends, HTTPException, status
-from app.schemas.users import UserId
+from app.schemas.user import UserId
 from app.core.security import oauth2_scheme
 
 

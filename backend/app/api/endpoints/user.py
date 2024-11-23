@@ -3,9 +3,9 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.session import get_db
 from app.core.jwt import create_access_token
-from app.services.users import UserService
-from app.schemas.users import UserCreate, UserResponse, Token
-from app.db.repositories.users import UserRepository
+from app.services.user import UserService
+from app.schemas.user import UserCreate, UserResponse, Token
+from app.db.repositories.user import UserRepository
 from typing import Annotated
 from app.core.security import oauth2_scheme
 

@@ -1,6 +1,6 @@
-from app.db.repositories.transactions import TransactionRepository
-from app.schemas.transactions import TransactionBase, TransactionUpdate, TransactionCreate
-from app.schemas.users import UserId
+from app.db.repositories.transaction import TransactionRepository
+from app.schemas.transaction import TransactionBase, TransactionUpdate, TransactionCreate
+from app.schemas.user import UserId
 from app.services.base import get_service_factory
 
 

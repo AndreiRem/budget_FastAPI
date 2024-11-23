@@ -2,8 +2,8 @@ from typing import Sequence
 from sqlalchemy.future import select
 from app.db.models import TransactionORM
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.schemas.transactions import TransactionCreate, TransactionUpdate, TransactionResponse
-from app.schemas.users import UserId
+from app.schemas.transaction import TransactionCreate, TransactionUpdate
+from app.schemas.user import UserId
 
 
 class TransactionRepository:

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
-from app.services.transactions import TransactionService
-from app.schemas.transactions import TransactionBase, TransactionUpdate, TransactionResponse
-from app.services.transactions import get_transaction_service
-from app.schemas.users import UserId
-from app.services.users import get_current_user_id
+from app.services.transaction import TransactionService
+from app.schemas.transaction import TransactionBase, TransactionUpdate, TransactionResponse
+from app.services.transaction import get_transaction_service
+from app.schemas.user import UserId
+from app.services.user import get_current_user_id
 
 
 router = APIRouter(

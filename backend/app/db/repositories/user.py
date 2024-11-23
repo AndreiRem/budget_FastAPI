@@ -1,4 +1,4 @@
-from app.schemas.users import UserCreate, UserResponse
+from app.schemas.user import UserCreate
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from app.core.security import get_password_hash
